@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { EditorContext } from '../../context/EditorContext';
 
-const TextArea = () => {
+const TextAreaPreview = () => {
 
     const editor = useContext(EditorContext);
 
@@ -32,7 +32,7 @@ const TextArea = () => {
             {/* Description */}
             <p
                 style={{ color: state.descriptionColor }}
-                className="text-base text-gray-700 break-words overflow-hidden"
+                className="text-base text-gray-700 h-24 break-words overflow-hidden"
             >
                 {state.description || "Here we will display customer's description."}
             </p>
@@ -40,4 +40,4 @@ const TextArea = () => {
     )
 };
 
-export default TextArea;
+export default TextAreaPreview;

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { EditorContext } from '../../context/EditorContext';
 import './index.css';
 
-const CallToAction = () => {
+const CallToActionPreview = () => {
 
     const editor = useContext(EditorContext);
 
@@ -33,4 +33,4 @@ const CallToAction = () => {
     )
 }
 
-export default CallToAction
+export default CallToActionPreview;

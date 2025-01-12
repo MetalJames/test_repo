@@ -1,6 +1,4 @@
-import CarouselPreview from "./Carousel/CarouselPreview";
-import TextAreaPreview from "./TextArea/TextAreaPreview";
-import CallToActionPreview from "./CallToAction/CallToActionPreview";
+import { CarouselPreview, TextAreaPreview, CallToActionPreview } from "./index"
 
 const MobilePreview = () => {
     return (

@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { EditorContext } from "../../context/EditorContext";
 import "./index.css";
 
-const Carousel = () => {
+const CarouselPreview = () => {
     const editor = useContext(EditorContext);
 
     if (!editor) {
@@ -58,4 +58,4 @@ const Carousel = () => {
     );
 };
 
-export default Carousel;
+export default CarouselPreview;

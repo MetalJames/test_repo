@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { EditorContext } from '../../context/EditorContext';
-import InputWithLabel from '../common/InputWithLabel';
-import ColorPicker from '../common/ColorPicker';
+import { InputWithLabel, ColorPicker } from '../index';
 
-const TextArea = () => {
+const TextAreaEditor = () => {
 
     const editor = useContext(EditorContext);
 
@@ -60,4 +59,4 @@ const TextArea = () => {
     )
 };
 
-export default TextArea;
+export default TextAreaEditor;

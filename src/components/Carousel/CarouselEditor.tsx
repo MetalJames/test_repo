@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { EditorContext } from "../../context/EditorContext";
 import './index.css';
 
-const Carousel = () => {
+const CarouselEditor = () => {
     const editor = useContext(EditorContext);
 
     if (!editor) {
@@ -77,4 +77,4 @@ const Carousel = () => {
     );
 };
 
-export default Carousel;
+export default CarouselEditor;

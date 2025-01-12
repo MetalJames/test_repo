@@ -1,7 +1,4 @@
-import CallToActionEditor from "./components/CallToAction/CallToActionEditor";
-import CarouselEditor from "./components/Carousel/CarouselEditor";
-import MobilePreview from "./components/MobilePreview";
-import TextAreaEditor from "./components/TextArea/TextAreaEditor";
+import { CarouselEditor, TextAreaEditor, CallToActionEditor, MobilePreview } from "./components";
 
 function App() {
 

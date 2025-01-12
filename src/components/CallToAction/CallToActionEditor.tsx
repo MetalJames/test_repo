@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { EditorContext } from '../../context/EditorContext';
-import './index.css';
-import InputWithLabel from '../common/InputWithLabel';
+import { InputWithLabel } from '../index';
 
-const CallToAction = () => {
+const CallToActionEditor = () => {
 
     const editor = useContext(EditorContext);
 
@@ -51,4 +50,4 @@ const CallToAction = () => {
     )
 }
 
-export default CallToAction
+export default CallToActionEditor;
