@@ -10,3 +10,4 @@ export { ColorPicker } from './common/ColorPicker';
 export { InputWithLabel } from './common/InputWithLabel';
 export { ConfirmationModal } from './common/ConfirmationModal';
 export { SaveConfigModal } from './common/SaveConfigModal';
+export { ErrorBoundary } from './ErrorBoundary/ErrorBoundry';

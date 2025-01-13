@@ -14,7 +14,6 @@
     height: 300px; /* Match height to container height */
     object-fit: cover;
 }
-
 /* Arrow styling */
 .carousel-container .slick-prev,
 .carousel-container .slick-next {
@@ -60,4 +59,10 @@
 .carousel-container {
     overflow: hidden;
     position: relative;
+}
+
+/* Adjust arrow icons */
+.slick-prev:before,
+.slick-next:before {
+    content: "";
 }

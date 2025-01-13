@@ -1,7 +1,4 @@
 import { ReactNode, useReducer } from "react";
-// import { editorReducer } from "./editorReducer";
-// import { EditorContext } from "./EditorContext";
-// import { initialEditorState } from "./editorProviderInitState";
 import { editorReducer, EditorContext, initialEditorState } from ".";
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {

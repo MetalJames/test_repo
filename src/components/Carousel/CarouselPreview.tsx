@@ -1,13 +1,17 @@
 import SliderSlick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./index.css";
+// import "./index.css";
 import { useEditor } from "../../state/editorContext";
+import { useState } from "react";
+import { NextArrow, PrevArrow } from "./PrevNextArrow";
 
 export const CarouselPreview = () => {
 
     const { state } = useEditor();
     const { images, viewMode } = state.carousel;
+
+    const [brokenImages, setBrokenImages] = useState<boolean[]>([]);
 
     const settings = {
         slidesToShow: 1,
@@ -19,6 +23,16 @@ export const CarouselPreview = () => {
         autoplay: false,
         autoplaySpeed: 3000,
         fade: true,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
+    };
+
+    const handleImageError = (index: number) => {
+        setBrokenImages((prev) => {
+            const updated = [...prev];
+            updated[index] = true;
+            return updated;
+        });
     };
 
     return (
@@ -44,7 +58,21 @@ export const CarouselPreview = () => {
                 >
                     {images.map((image, index) => (
                         <div key={index}>
-                            <img src={image} alt={`Slide ${index}`} className="w-full object-cover" />
+                            <img 
+                                src={image} 
+                                alt={`Slide ${index}`} 
+                                className="w-full object-cover"
+                                onError={(e) => {
+                                    (e.target as HTMLImageElement).style.display = 'none';
+                                    console.warn(`Image failed to load: ${image}`);
+                                    handleImageError(index);
+                                }} 
+                            />
+                            {brokenImages[index] && (
+                                <div className="text-sm text-red-500 mt-2 text-center">
+                                Unable to load image. Please check the URL.
+                                </div>
+                            )}
                         </div>
                     ))}
                 </SliderSlick>

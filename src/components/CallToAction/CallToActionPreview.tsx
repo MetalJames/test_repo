@@ -18,6 +18,7 @@ export const CallToActionPreview = () => {
                         color: textColor,
                     }}
                     className="inline-block px-4 py-2 rounded-md font-semibold transition hover:opacity-90"
+                    aria-label={`Call to action: ${label || 'No Label'}`}
                 >
                     {label || "Sample Buttom"}
                 </a>
