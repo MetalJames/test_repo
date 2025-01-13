@@ -1,16 +1,9 @@
-import { useContext } from 'react';
-import { EditorContext } from '../../context/EditorContext';
-import { InputWithLabel } from '../index';
+import { ColorPicker, InputWithLabel } from '../index';
+import { useEditor } from '../../hooks/useEditorHook';
 
 const CallToActionEditor = () => {
 
-    const editor = useContext(EditorContext);
-
-    if(!editor) {
-        return  null; // Handle Edge Cases
-    }
-
-    const { state, updateState } = editor;
+    const { state, dispatch } = useEditor();
 
     return (
         <div className="cta-editor p-4 border rounded-md shadow-md">
@@ -20,32 +13,33 @@ const CallToActionEditor = () => {
             <InputWithLabel 
                 label="Button Label"
                 type="text"
-                value={state.buttonLabel}
-                onChange={(e) => updateState("buttonLabel", e.target.value)}
+                value={state.button.label}
+                onChange={(e) => dispatch({ type: "UPDATE_BUTTON_LABEL", payload: e.target.value })}
+                placeholder="Enter button text"
             />
 
             {/* Button Link */}
             <InputWithLabel 
                 label="Button Link"
                 type="text"
-                value={state.buttonLink}
-                onChange={(e) => updateState("buttonLink", e.target.value)}
+                value={state.button.link}
+                onChange={(e) => dispatch({ type: "UPDATE_BUTTON_LINK", payload: e.target.value })}
+                placeholder="Enter button link"
             />
 
             {/* Button Colors */}
-            <InputWithLabel 
+            <ColorPicker
                 label="Button Background Color"
-                type="color"
-                value={state.buttonColor}
-                onChange={(e) => updateState("buttonColor", e.target.value)}
+                value={state.button.backgroundColor}
+                onChange={(newColor) => dispatch({ type: "UPDATE_BUTTON_BACKGROUND_COLOR", payload: newColor })}
             />
 
-            <InputWithLabel 
+            <ColorPicker
                 label="Button Text Color"
-                type="color"
-                value={state.buttonTextColor}
-                onChange={(e) => updateState("buttonTextColor", e.target.value)}
+                value={state.button.textColor}
+                onChange={(newColor) => dispatch({ type: "UPDATE_BUTTON_TEXT_COLOR", payload: newColor })}
             />
+
         </div>
     )
 }

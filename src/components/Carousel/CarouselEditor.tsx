@@ -1,15 +1,14 @@
-import { useContext } from "react";
-import { EditorContext } from "../../context/EditorContext";
 import './index.css';
+import { useEditor } from "../../hooks/useEditorHook";
+import { useState } from 'react';
+import { ConfirmationModal } from '../common/ConfirmationModal';
 
 const CarouselEditor = () => {
-    const editor = useContext(EditorContext);
 
-    if (!editor) {
-        return null;
-    }
+    const { state, dispatch } = useEditor();
 
-    const { state, updateState } = editor;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [imageToRemove, setImageToRemove] = useState<number | null>(null);
 
     const handleAddImage = () => {
         const newURL = prompt("Enter Image URL:");
@@ -18,7 +17,7 @@ const CarouselEditor = () => {
             img.src = newURL;
 
             img.onload = () => {
-                updateState("carouselImages", [...state.carouselImages, newURL]);
+                dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: [...state.carousel.images, newURL] });
             };
 
             img.onerror = () => {
@@ -30,15 +29,29 @@ const CarouselEditor = () => {
     const handleEditImage = (index: number) => {
         const newURL = prompt("Enter new Image URL:");
         if (newURL) {
-            const updatedImages = [...state.carouselImages];
+            const updatedImages = [...state.carousel.images];
             updatedImages[index] = newURL;
-            updateState("carouselImages", updatedImages);
+            dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: updatedImages });
         }
     };
 
-    const handleRemoveImage = (index: number) => {
-        const updatedImages = state.carouselImages.filter((_, i) => i !== index);
-        updateState("carouselImages", updatedImages);
+    // const handleRemoveImage = (index: number) => {
+    //     const updatedImages = state.carousel.images.filter((_, i) => i !== index);
+    //     dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: updatedImages });
+    // };
+
+    const handleRemoveImage = () => {
+        if (imageToRemove !== null) {
+            const updatedImages = state.carousel.images.filter((_, i) => i !== imageToRemove);
+            dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: updatedImages });
+            setImageToRemove(null);
+            setIsModalOpen(false);
+        }
+    };
+
+    const openModal = (index: number) => {
+        setImageToRemove(index);
+        setIsModalOpen(true);
     };
 
     return (
@@ -48,31 +61,56 @@ const CarouselEditor = () => {
                 Add Image
             </button>
             <select
-                value={state.viewMode}
-                onChange={(e) => updateState("viewMode", e.target.value as "portrait" | "landscape" | "square")}
+                value={state.carousel.viewMode}
+                onChange={(e) => dispatch({ type: "UPDATE_CAROUSEL_VIEW_MODE", payload: e.target.value as "portrait" | "landscape" | "square" })}
                 className="select mb-4"
             >
                 <option value="portrait">Portrait</option>
                 <option value="landscape">Landscape</option>
                 <option value="square">Square</option>
             </select>
-            <ul>
-                {state.carouselImages.length === 0 ? (
-                    <li className="mb-4 text-gray-500">No images added. Click "Add Image" to begin.</li>
+
+            {/* Scrollable List */}
+            <ul className="max-h-40 overflow-auto border rounded-md p-2">
+                {state.carousel.images.length === 0 ? (
+                    <li className="mb-4 text-gray-500">
+                        No images added. Click "Add Image" to begin.
+                    </li>
                 ) : (
-                    state.carouselImages.map((image, index) => (
-                        <li key={index} className="mb-2">
-                            <img src={image} alt={`Slide ${index}`} className="w-20 h-20 object-cover inline-block mr-4" />
-                            <button onClick={() => handleEditImage(index)} className="btn btn-secondary mr-2">
+                    state.carousel.images.map((image, index) => (
+                        <li
+                            key={index}
+                            className="flex items-center justify-between mb-2"
+                        >
+                            <img
+                                src={image}
+                                alt={`Slide ${index}`}
+                                className="w-20 h-20 object-cover inline-block mr-4"
+                            />
+                            <button
+                                onClick={() => handleEditImage(index)}
+                                className="btn btn-secondary mr-2"
+                            >
                                 Edit
                             </button>
-                            <button onClick={() => handleRemoveImage(index)} className="btn btn-danger">
+                            <button
+                                onClick={() => openModal(index)}
+                                className="btn btn-danger"
+                            >
                                 Remove
                             </button>
                         </li>
                     ))
                 )}
             </ul>
+
+            {/* Confirmation Modal */}
+            <ConfirmationModal
+                isOpen={isModalOpen}
+                message="Are you sure you want to delete this image?"
+                onConfirm={handleRemoveImage}
+                onCancel={() => setIsModalOpen(false)}
+            />
         </div>
     );
 };

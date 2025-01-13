@@ -1,16 +1,9 @@
-import { useContext } from 'react';
-import { EditorContext } from '../../context/EditorContext';
 import { InputWithLabel, ColorPicker } from '../index';
+import { useEditor } from '../../hooks/useEditorHook';
 
 const TextAreaEditor = () => {
 
-    const editor = useContext(EditorContext);
-
-    if(!editor) {
-        return null; // Handle Edge Cases
-    }
-
-    const { state, updateState } = editor;
+    const { state, dispatch } = useEditor();
 
     return (
         <div className="w-full bg-gray-100 p-4 rounded-md shadow-md">
@@ -20,40 +13,42 @@ const TextAreaEditor = () => {
             <InputWithLabel 
                 label="Title"
                 type="text"
-                value={state.title}
+                value={state.textArea.title}
                 onChange={(e) => {
                     const value = e.target.value;
                     if (value.length <= 30) {
-                        updateState("title", value);
+                        dispatch({ type: "UPDATE_TEXTAREA_TITLE", payload: e.target.value })
                     }
                 }}
+                placeholder="Enter Title"
             />
-            <p className="text-sm text-gray-500 mb-4">{state.title.length}/30</p>
+            <p className="text-sm text-gray-500 mb-4">{state.textArea.title.length}/30</p>
 
             <ColorPicker
                 label="Title Color"
-                value={state.titleColor}
-                onChange={(newColor) => updateState("titleColor", newColor)}
+                value={state.textArea.titleColor}
+                onChange={(newColor) => dispatch({ type: "UPDATE_TEXTAREA_TITLE_COLOR", payload: newColor })}
             />
 
             {/* Description Section */}
             <InputWithLabel 
                 label="Description"
                 type="text"
-                value={state.description}
+                value={state.textArea.description}
                 onChange={(e) => {
                     const value = e.target.value;
                     if (value.length <= 80) {
-                        updateState("description", value);
+                        dispatch({ type: "UPDATE_TEXTAREA_DESCRIPTION", payload: value });
                     }
                 }}
+                placeholder="Enter Description"
             />
-            <p className="text-sm text-gray-500 mb-4">{state.description.length}/80</p>
+            <p className="text-sm text-gray-500 mb-4">{state.textArea.description.length}/80</p>
 
             <ColorPicker
                 label="Description Color"
-                value={state.descriptionColor}
-                onChange={(newColor) => updateState("descriptionColor", newColor)}
+                value={state.textArea.descriptionColor}
+                onChange={(newColor) => dispatch({ type: "UPDATE_TEXTAREA_DESCRIPTION_COLOR", payload: newColor })}
             />
         </div>
     )
