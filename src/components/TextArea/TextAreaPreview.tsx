@@ -1,24 +1,18 @@
-import { useContext } from 'react';
-import { EditorContext } from '../../context/EditorContext';
+import { useEditor } from '../../state/editorContext';
 
-const TextAreaPreview = () => {
+export const TextAreaPreview = () => {
 
-    const editor = useContext(EditorContext);
-
-    if(!editor) {
-        return null; // Handle Edge Cases
-    }
-
-    const { state } = editor;
+    const { state } = useEditor();
+    const { title, titleColor, description, descriptionColor } = state.textArea;
 
     return (
         <div className="w-full bg-gray-100 p-6 h-52 flex flex-col justify-center">
             {/* Title */}
             <h2
-                style={{ color: state.textArea.titleColor }}
+                style={{ color: titleColor }}
                 className="text-2xl font-bold mb-2 break-words"
             >
-                {state.textArea.title || "Sample Name"}
+                {title || "Sample Name"}
             </h2>
 
             {/* Divider */}
@@ -31,13 +25,11 @@ const TextAreaPreview = () => {
 
             {/* Description */}
             <p
-                style={{ color: state.textArea.descriptionColor }}
+                style={{ color: descriptionColor }}
                 className="text-base text-gray-700 h-24 break-words overflow-hidden"
             >
-                {state.textArea.description || "Here we will display customer's description."}
+                {description || "Here we will display customer's description."}
             </p>
         </div>
     )
 };
-
-export default TextAreaPreview;

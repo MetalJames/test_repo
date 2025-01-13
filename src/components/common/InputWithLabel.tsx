@@ -5,11 +5,11 @@ type InputWithLabelProps = {
     type: "text" | "color";
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    className?: string; // Optionsl
-    placeholder?: string; // Add the placeholder prop
+    className?: string;
+    placeholder?: string;
 }
 
-const InputWithLabel = (props: InputWithLabelProps) => {
+export const InputWithLabel = (props: InputWithLabelProps) => {
 
     const { label, type, value, onChange, className, placeholder } = props;
 
@@ -26,5 +26,3 @@ const InputWithLabel = (props: InputWithLabelProps) => {
         </div>
     )
 }
-
-export default InputWithLabel

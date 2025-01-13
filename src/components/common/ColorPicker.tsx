@@ -6,7 +6,7 @@ type ColorPickerProps = {
     onChange: (newColor: string) => void;
 };
 
-const ColorPicker = ({ label, value, onChange }: ColorPickerProps) => {
+export const ColorPicker = ({ label, value, onChange }: ColorPickerProps) => {
     const [color, setColor] = useState(value);
 
     // Sync local state with external value
@@ -78,5 +78,3 @@ const ColorPicker = ({ label, value, onChange }: ColorPickerProps) => {
         </div>
     );
 };
-
-export default ColorPicker;

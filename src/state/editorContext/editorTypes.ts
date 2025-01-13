@@ -27,4 +27,5 @@ export type EditorAction =
     | { type: "UPDATE_BUTTON_LABEL"; payload: string }
     | { type: "UPDATE_BUTTON_LINK"; payload: string }
     | { type: "UPDATE_BUTTON_BACKGROUND_COLOR"; payload: string }
-    | { type: "UPDATE_BUTTON_TEXT_COLOR"; payload: string };
+    | { type: "UPDATE_BUTTON_TEXT_COLOR"; payload: string }
+    | { type: "RESET_STATE" };

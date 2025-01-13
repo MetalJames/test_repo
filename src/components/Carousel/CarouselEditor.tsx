@@ -1,11 +1,12 @@
 import './index.css';
-import { useEditor } from "../../hooks/useEditorHook";
+import { useEditor } from "../../state/editorContext";
 import { useState } from 'react';
-import { ConfirmationModal } from '../common/ConfirmationModal';
+import { ConfirmationModal } from '../index';
 
-const CarouselEditor = () => {
+export const CarouselEditor = () => {
 
-    const { state, dispatch } = useEditor();
+    const { state, actions } = useEditor();
+    const { images, viewMode } = state.carousel;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageToRemove, setImageToRemove] = useState<number | null>(null);
@@ -17,7 +18,7 @@ const CarouselEditor = () => {
             img.src = newURL;
 
             img.onload = () => {
-                dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: [...state.carousel.images, newURL] });
+                actions.updateCarouselImages([...images, newURL]);
             };
 
             img.onerror = () => {
@@ -29,21 +30,16 @@ const CarouselEditor = () => {
     const handleEditImage = (index: number) => {
         const newURL = prompt("Enter new Image URL:");
         if (newURL) {
-            const updatedImages = [...state.carousel.images];
+            const updatedImages = [...images];
             updatedImages[index] = newURL;
-            dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: updatedImages });
+            actions.updateCarouselImages(updatedImages);
         }
     };
 
-    // const handleRemoveImage = (index: number) => {
-    //     const updatedImages = state.carousel.images.filter((_, i) => i !== index);
-    //     dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: updatedImages });
-    // };
-
     const handleRemoveImage = () => {
         if (imageToRemove !== null) {
-            const updatedImages = state.carousel.images.filter((_, i) => i !== imageToRemove);
-            dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: updatedImages });
+            const updatedImages = images.filter((_, i) => i !== imageToRemove);
+            actions.updateCarouselImages(updatedImages);
             setImageToRemove(null);
             setIsModalOpen(false);
         }
@@ -61,8 +57,8 @@ const CarouselEditor = () => {
                 Add Image
             </button>
             <select
-                value={state.carousel.viewMode}
-                onChange={(e) => dispatch({ type: "UPDATE_CAROUSEL_VIEW_MODE", payload: e.target.value as "portrait" | "landscape" | "square" })}
+                value={viewMode}
+                onChange={(e) => actions.updateCarouselViewMode(e.target.value as "portrait" | "landscape" | "square")}
                 className="select mb-4"
             >
                 <option value="portrait">Portrait</option>
@@ -72,12 +68,12 @@ const CarouselEditor = () => {
 
             {/* Scrollable List */}
             <ul className="max-h-40 overflow-auto border rounded-md p-2">
-                {state.carousel.images.length === 0 ? (
+                {images.length === 0 ? (
                     <li className="mb-4 text-gray-500">
                         No images added. Click "Add Image" to begin.
                     </li>
                 ) : (
-                    state.carousel.images.map((image, index) => (
+                    images.map((image, index) => (
                         <li
                             key={index}
                             className="flex items-center justify-between mb-2"
@@ -114,5 +110,3 @@ const CarouselEditor = () => {
         </div>
     );
 };
-
-export default CarouselEditor;

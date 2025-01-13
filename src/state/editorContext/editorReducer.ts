@@ -1,4 +1,5 @@
-import { EditorState, EditorAction } from '../types/EditorTypes';
+import { initialEditorState } from './editorProviderInitState';
+import { EditorState, EditorAction } from '.';
 
 export const editorReducer = (state: EditorState, action: EditorAction): EditorState => {
     switch (action.type) {
@@ -52,6 +53,8 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
             ...state,
             button: { ...state.button, textColor: action.payload },
         };
+        case "RESET_STATE":
+            return initialEditorState;
         default:
         return state;
     }

@@ -1,20 +1,21 @@
 import { ColorPicker, InputWithLabel } from '../index';
-import { useEditor } from '../../hooks/useEditorHook';
+import { useEditor } from '../../state/editorContext';
 
-const CallToActionEditor = () => {
+export const CallToActionEditor = () => {
 
-    const { state, dispatch } = useEditor();
+    const { state, actions } = useEditor();
+    const { label, link, backgroundColor, textColor } = state.button
 
     return (
-        <div className="cta-editor p-4 border rounded-md shadow-md">
+        <div className="p-4 border rounded-md shadow-md">
             <h2 className="text-lg font-semibold mb-4">Call to Action Editor</h2>
 
             {/* Button Label */}
             <InputWithLabel 
                 label="Button Label"
                 type="text"
-                value={state.button.label}
-                onChange={(e) => dispatch({ type: "UPDATE_BUTTON_LABEL", payload: e.target.value })}
+                value={label}
+                onChange={(e) => actions.updateButtonLabel(e.target.value)}
                 placeholder="Enter button text"
             />
 
@@ -22,26 +23,24 @@ const CallToActionEditor = () => {
             <InputWithLabel 
                 label="Button Link"
                 type="text"
-                value={state.button.link}
-                onChange={(e) => dispatch({ type: "UPDATE_BUTTON_LINK", payload: e.target.value })}
+                value={link}
+                onChange={(e) => actions.updateButtonLink(e.target.value)}
                 placeholder="Enter button link"
             />
 
             {/* Button Colors */}
             <ColorPicker
                 label="Button Background Color"
-                value={state.button.backgroundColor}
-                onChange={(newColor) => dispatch({ type: "UPDATE_BUTTON_BACKGROUND_COLOR", payload: newColor })}
+                value={backgroundColor}
+                onChange={actions.updateButtonBackgroundColor}
             />
 
             <ColorPicker
                 label="Button Text Color"
-                value={state.button.textColor}
-                onChange={(newColor) => dispatch({ type: "UPDATE_BUTTON_TEXT_COLOR", payload: newColor })}
+                value={textColor}
+                onChange={actions.updateButtonTextColor}
             />
 
         </div>
     )
 }
-
-export default CallToActionEditor;
