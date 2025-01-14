@@ -7,7 +7,6 @@ export const CallToActionPreview = () => {
 
     return (
         <div className="p-4 border rounded-md shadow-md">
-            {/* Preview */}
             <div className="preview mt-6 text-center">
                 <a 
                     href={link}

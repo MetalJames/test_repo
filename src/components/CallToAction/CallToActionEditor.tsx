@@ -9,8 +9,6 @@ export const CallToActionEditor = () => {
     return (
         <div className="p-4 border rounded-md shadow-md">
             <h2 className="text-lg font-semibold mb-4">Call to Action Editor</h2>
-
-            {/* Button Label */}
             <InputWithLabel 
                 label="Button Label"
                 type="text"
@@ -18,8 +16,6 @@ export const CallToActionEditor = () => {
                 onChange={(e) => actions.updateButtonLabel(e.target.value)}
                 placeholder="Enter button text"
             />
-
-            {/* Button Link */}
             <InputWithLabel 
                 label="Button Link"
                 type="text"
@@ -27,20 +23,16 @@ export const CallToActionEditor = () => {
                 onChange={(e) => actions.updateButtonLink(e.target.value)}
                 placeholder="Enter button link"
             />
-
-            {/* Button Colors */}
             <ColorPicker
                 label="Button Background Color"
                 value={backgroundColor}
                 onChange={actions.updateButtonBackgroundColor}
             />
-
             <ColorPicker
                 label="Button Text Color"
                 value={textColor}
                 onChange={actions.updateButtonTextColor}
             />
-
         </div>
     )
 }

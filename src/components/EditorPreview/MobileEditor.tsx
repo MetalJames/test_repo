@@ -32,8 +32,6 @@ export const MobileEditor = () => {
             <CarouselEditor />
             <TextAreaEditor />
             <CallToActionEditor />
-
-            {/* Reset & Save Buttons */}
             <div className="mt-6 flex gap-4 justify-center">
                 <button
                     onClick={handleOpenResetModal}
@@ -53,16 +51,12 @@ export const MobileEditor = () => {
                     {isLoading ? "Saving..." : "Save Config"}
                 </button>
             </div>
-
-            {/* Reset Confirmation Modal */}
             <ConfirmationModal
                 isOpen={isResetModalOpen}
                 message="Are you sure you want to reset all fields? This action cannot be undone."
                 onConfirm={handleConfirmReset}
                 onCancel={handleCloseResetModal}
             />
-
-            {/* Save Config Modal */}
             <SaveConfigModal
                 isOpen={isSaveModalOpen}
                 state={state}

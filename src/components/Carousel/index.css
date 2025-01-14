@@ -10,50 +10,50 @@
 }
 
 .carousel-square img {
-    width: 100%; /* Take full width */
-    height: 300px; /* Match height to container height */
+    width: 100%;
+    height: 300px;
     object-fit: cover;
 }
 
 /* Arrow styling */
 .carousel-container .slick-prev,
 .carousel-container .slick-next {
-    display: flex; /* Show arrows as flex containers */
-    align-items: center; /* Center arrow content vertically */
+    display: flex;
+    align-items: center;
     justify-content: center;
-    width: 40px; /* Fixed arrow width */
-    height: 100%; /* Full height of the image container */
-    background: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
-    color: black; /* Arrow color */
+    width: 40px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    color: black;
     position: absolute;
-    z-index: 2; /* Place arrows above other elements */
-    opacity: 0; /* Hidden initially */
+    z-index: 2;
+    opacity: 0;
     transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
     cursor: pointer;
 }
 
 /* Left arrow */
 .carousel-container .slick-prev {
-    left: 0; /* Align to the left edge */
+    left: 0;
 }
 
 /* Right arrow */
 .carousel-container .slick-next {
-    right: 0; /* Align to the right edge */
+    right: 0;
 }
 
 /* Show arrows when hovering over the container */
 .carousel-container:hover .slick-prev,
 .carousel-container:hover .slick-next {
-    opacity: 1; /* Make arrows visible */
-    pointer-events: auto; /* Ensure arrows are clickable */
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* Keep arrows visible when hovering over them */
 .carousel-container .slick-prev:hover,
 .carousel-container .slick-next:hover {
-    opacity: 1; /* Ensure arrows remain visible */
-    background: rgba(255, 255, 255, 0.8); /* Slightly darker background on hover */
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 /* Prevent horizontal scroll caused by arrows */

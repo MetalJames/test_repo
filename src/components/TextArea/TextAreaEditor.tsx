@@ -9,8 +9,6 @@ export const TextAreaEditor = () => {
     return (
         <div className="w-full bg-gray-100 p-4 rounded-md shadow-md">
             <h2 className="text-lg font-semibold mb-4">Text Area Editor</h2>
-
-            {/* Title Section */}
             <InputWithLabel 
                 label="Title"
                 type="text"
@@ -24,14 +22,11 @@ export const TextAreaEditor = () => {
                 placeholder="Enter Title"
             />
             <p className="text-sm text-gray-500 mb-4">{title.length}/30</p>
-
             <ColorPicker
                 label="Title Color"
                 value={titleColor}
                 onChange={actions.updateTextAreaTitleColor}
             />
-
-            {/* Description Section */}
             <InputWithLabel 
                 label="Description"
                 type="text"
@@ -45,7 +40,6 @@ export const TextAreaEditor = () => {
                 placeholder="Enter Description"
             />
             <p className="text-sm text-gray-500 mb-4">{description.length}/80</p>
-
             <ColorPicker
                 label="Description Color"
                 value={descriptionColor}

@@ -65,8 +65,6 @@ export const CarouselEditor = () => {
                 <option value="landscape">Landscape</option>
                 <option value="square">Square</option>
             </select>
-
-            {/* Scrollable List */}
             <ul className="max-h-40 overflow-auto border rounded-md p-2">
                 {images.length === 0 ? (
                     <li className="mb-4 text-gray-500">
@@ -99,8 +97,6 @@ export const CarouselEditor = () => {
                     ))
                 )}
             </ul>
-
-            {/* Confirmation Modal */}
             <ConfirmationModal
                 isOpen={isModalOpen}
                 message="Are you sure you want to delete this image?"

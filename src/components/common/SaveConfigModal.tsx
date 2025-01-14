@@ -1,6 +1,6 @@
 type SaveConfigModalProps = {
     isOpen: boolean;
-    state: object; // Pass the reducer state as an object
+    state: object;
     onClose: () => void;
 };
 

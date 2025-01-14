@@ -4,7 +4,6 @@ import { editorReducer, EditorContext, initialEditorState } from ".";
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(editorReducer, initialEditorState);
 
-    // Encapsulated actions
     const actions = {
         updateCarouselImages: (images: string[]) => {
             dispatch({ type: "UPDATE_CAROUSEL_IMAGES", payload: images });

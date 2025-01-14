@@ -46,5 +46,4 @@ const NextArrow = (props: CustomArrowProps) => {
     );
 };
 
-
 export { PrevArrow, NextArrow };
