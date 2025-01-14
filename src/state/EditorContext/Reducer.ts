@@ -1,12 +1,13 @@
-import { initialEditorState } from './editorProviderInitState';
-import { EditorState, EditorAction } from '.';
+import { CarouselImage } from '../../types/globalTypes';
+import { initialEditorState } from './ProviderInitState';
+import { EditorState, EditorAction } from './types';
 
 export const editorReducer = (state: EditorState, action: EditorAction): EditorState => {
     switch (action.type) {
         case "UPDATE_CAROUSEL_IMAGES":
         return {
             ...state,
-            carousel: { ...state.carousel, images: action.payload },
+            carousel: { ...state.carousel, images: action.payload as CarouselImage[] },
         };
         case "UPDATE_CAROUSEL_VIEW_MODE":
         return {

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-type ColorPickerProps = {
+type Props = {
     label: string;
     value: string;
     onChange: (newColor: string) => void;
 };
 
-export const ColorPicker = ({ label, value, onChange }: ColorPickerProps) => {
+export const ColorPicker = (props: Props) => {
+
+    const { label, value, onChange } = props;
+    
     const [color, setColor] = useState(value);
 
     // Sync local state with external value

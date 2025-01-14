@@ -1,16 +1,14 @@
-type ConfirmationModalProps = {
+type Props = {
     isOpen: boolean;
     message: string;
     onConfirm: () => void;
     onCancel: () => void;
 };
 
-export const ConfirmationModal = ({
-    isOpen,
-    message,
-    onConfirm,
-    onCancel,
-}: ConfirmationModalProps) => {
+export const ConfirmationModal = (props: Props) => {
+
+    const { isOpen, message, onConfirm, onCancel } = props;
+
     if (!isOpen) return null;
 
     return (

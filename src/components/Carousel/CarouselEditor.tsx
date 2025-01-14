@@ -1,71 +1,101 @@
 import './index.css';
-import { useEditor } from "../../state/editorContext";
+import { useEditor } from "../../state/EditorContext/useEditor";
 import { useState } from 'react';
+import { AddEditImageModal } from "../common/AddEditImageModal";
+import { FeedbackModal } from '../common/FeedBackModal';
 import { ConfirmationModal } from '../index';
+import { CarouselImage, ImageViewMode } from "../../types";
+import { v4 as uuidv4 } from "uuid";
 
 export const CarouselEditor = () => {
 
     const { state, actions } = useEditor();
     const { images, viewMode } = state.carousel;
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [imageToRemove, setImageToRemove] = useState<number | null>(null);
+    const [inputValue, setInputValue] = useState("");
+    const [isInputModalOpen, setIsInputModalOpen] = useState(false);
+    const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+    const [feedbackMessage, setFeedbackMessage] = useState("");
+    const [feedbackButtonLabel, setFeedbackButtonLabel] = useState("OK");
+    const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+    const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
 
-    const handleAddImage = () => {
-        const newURL = prompt("Enter Image URL:");
-        if (newURL) {
-            const img = new Image();
-            img.src = newURL;
-
-            img.onload = () => {
-                actions.updateCarouselImages([...images, newURL]);
-            };
-
-            img.onerror = () => {
-                alert("Invalid image URL. Please try again.");
-            };
-        }
+    const openAddImageModal = () => {
+        setSelectedImageIndex(null);
+        setIsInputModalOpen(true);
     };
 
-    const handleEditImage = (index: number) => {
-        const newURL = prompt("Enter new Image URL:");
-        if (newURL) {
-            const updatedImages = [...images];
-            updatedImages[index] = newURL;
+    const openEditImageModal = (index: number) => {
+        setSelectedImageIndex(index);
+        setIsInputModalOpen(true);
+    };
+
+    const openRemoveModal = (index: number) => {
+        setSelectedImageIndex(index);
+        setIsRemoveModalOpen(true);
+    };
+
+    const handleInputConfirm = (value: string) => {
+        const img = new Image();
+        img.src = value;
+
+        img.onload = () => {
+            if (selectedImageIndex === null) {
+                const newImage: CarouselImage = { id: uuidv4(), url: value };
+                actions.updateCarouselImages([...images, newImage]);
+                setFeedbackMessage("Image added successfully!");
+            } else {
+                const updatedImages = [...images];
+                updatedImages[selectedImageIndex] = {
+                    ...updatedImages[selectedImageIndex],
+                    url: value,
+                };
+                actions.updateCarouselImages(updatedImages);
+                setFeedbackMessage("Image updated successfully!");
+            }
+            setInputValue("");
+            setFeedbackButtonLabel("OK");
+            setIsFeedbackModalOpen(true);
+            setIsInputModalOpen(false);
+        };
+
+        img.onerror = () => {
+            setFeedbackMessage("Invalid image URL. Please try again.");
+            setFeedbackButtonLabel("Try Again");
+            setIsFeedbackModalOpen(true);
+        };
+    };
+
+    const handleRemoveConfirm = () => {
+        if (selectedImageIndex !== null) {
+            const updatedImages = images.filter((_, i) => i !== selectedImageIndex);
             actions.updateCarouselImages(updatedImages);
+            setSelectedImageIndex(null);
+            setIsRemoveModalOpen(false);
         }
     };
 
-    const handleRemoveImage = () => {
-        if (imageToRemove !== null) {
-            const updatedImages = images.filter((_, i) => i !== imageToRemove);
-            actions.updateCarouselImages(updatedImages);
-            setImageToRemove(null);
-            setIsModalOpen(false);
-        }
-    };
-
-    const openModal = (index: number) => {
-        setImageToRemove(index);
-        setIsModalOpen(true);
+    const closeInputModal = () => {
+        setInputValue("");
+        setIsInputModalOpen(false);
     };
 
     return (
         <div className="carousel-editor mb-6">
             <h2 className="text-lg font-semibold mb-4">Carousel Editor</h2>
-            <button onClick={handleAddImage} className="btn btn-primary mb-4">
+            <button onClick={openAddImageModal} className="btn btn-primary mb-4">
                 Add Image
             </button>
             <select
                 value={viewMode}
-                onChange={(e) => actions.updateCarouselViewMode(e.target.value as "portrait" | "landscape" | "square")}
+                onChange={(e) => actions.updateCarouselViewMode(e.target.value as ImageViewMode)}
                 className="select mb-4"
             >
                 <option value="portrait">Portrait</option>
                 <option value="landscape">Landscape</option>
                 <option value="square">Square</option>
             </select>
-            <ul className="max-h-40 overflow-auto border rounded-md p-2">
+            <ul className="h-64 overflow-auto border rounded-md p-2">
                 {images.length === 0 ? (
                     <li className="mb-4 text-gray-500">
                         No images added. Click "Add Image" to begin.
@@ -73,22 +103,22 @@ export const CarouselEditor = () => {
                 ) : (
                     images.map((image, index) => (
                         <li
-                            key={index}
+                            key={image.id}
                             className="flex items-center justify-between mb-2"
                         >
                             <img
-                                src={image}
+                                src={image.url}
                                 alt={`Slide ${index}`}
                                 className="w-20 h-20 object-cover inline-block mr-4"
                             />
                             <button
-                                onClick={() => handleEditImage(index)}
+                                onClick={() => openEditImageModal(index)}
                                 className="btn btn-secondary mr-2"
                             >
                                 Edit
                             </button>
                             <button
-                                onClick={() => openModal(index)}
+                                onClick={() => openRemoveModal(index)}
                                 className="btn btn-danger"
                             >
                                 Remove
@@ -97,11 +127,26 @@ export const CarouselEditor = () => {
                     ))
                 )}
             </ul>
+            <AddEditImageModal
+                isOpen={isInputModalOpen}
+                title={selectedImageIndex === null ? "Add New Image" : "Edit Image URL"}
+                placeholder="https://example.com/image.jpg"
+                value={inputValue}
+                onChange={setInputValue}
+                onConfirm={handleInputConfirm}
+                onCancel={closeInputModal}
+            />
+            <FeedbackModal
+                isOpen={isFeedbackModalOpen}
+                message={feedbackMessage}
+                buttonLabel={feedbackButtonLabel}
+                onClose={() => setIsFeedbackModalOpen(false)}
+            />
             <ConfirmationModal
-                isOpen={isModalOpen}
+                isOpen={isRemoveModalOpen}
                 message="Are you sure you want to delete this image?"
-                onConfirm={handleRemoveImage}
-                onCancel={() => setIsModalOpen(false)}
+                onConfirm={handleRemoveConfirm}
+                onCancel={() => setIsRemoveModalOpen(false)}
             />
         </div>
     );

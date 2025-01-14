@@ -1,4 +1,4 @@
-import { useEditor } from '../../state/editorContext';
+import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const CallToActionPreview = () => {
 

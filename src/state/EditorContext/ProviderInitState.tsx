@@ -1,7 +1,10 @@
-import { EditorState } from ".";
+import { EditorState } from "./types";
 
 export const initialEditorState: EditorState = {
-    carousel: { images: [], viewMode: "landscape" },
+    carousel: { 
+        images: [], 
+        viewMode: "landscape" 
+    },
     textArea: {
         title: "Sample Title",
         description: "Sample Description",

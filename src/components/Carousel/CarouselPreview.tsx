@@ -2,7 +2,7 @@ import SliderSlick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./index.css";
-import { useEditor } from "../../state/editorContext";
+import { useEditor } from "../../state/EditorContext/useEditor";
 import { NextArrow, PrevArrow } from "./PrevNextArrow";
 
 export const CarouselPreview = () => {
@@ -45,12 +45,12 @@ export const CarouselPreview = () => {
                     key={images.join(",")}
                     {...settings}
                 >
-                    {images.map((image, index) => (
-                        <div key={index}>
+                    {images.map((image, id) => (
+                        <div key={id}>
                             <img 
-                                src={image} 
-                                alt={`Slide ${index}`} 
-                                className="w-full object-cover"
+                                src={image.url} 
+                                alt={`Slide ${id}`} 
+                                className="w-full h-[300px] object-cover"
                             />
                         </div>
                     ))}

@@ -1,5 +1,5 @@
 import { ColorPicker, InputWithLabel } from '../index';
-import { useEditor } from '../../state/editorContext';
+import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const CallToActionEditor = () => {
 

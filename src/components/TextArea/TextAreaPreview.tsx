@@ -1,4 +1,4 @@
-import { useEditor } from '../../state/editorContext';
+import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const TextAreaPreview = () => {
 
@@ -17,12 +17,17 @@ export const TextAreaPreview = () => {
             <p className="text-lg font-semibold text-gray-600 mb-2">
                 Description
             </p>
-            <p
+            <div
+                style={{ color: descriptionColor }}
+                className="text-base text-gray-700 h-64 break-words overflow-hidden"
+                dangerouslySetInnerHTML={{ __html: description || "Here we will display customer's description." }}
+            />
+            {/* <p
                 style={{ color: descriptionColor }}
                 className="text-base text-gray-700 h-24 break-words overflow-hidden"
             >
                 {description || "Here we will display customer's description."}
-            </p>
+            </p> */}
         </div>
     )
 };

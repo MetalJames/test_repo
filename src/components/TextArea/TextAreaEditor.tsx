@@ -1,5 +1,7 @@
+import ReactQuill from 'react-quill';
 import { InputWithLabel, ColorPicker } from '../index';
-import { useEditor } from '../../state/editorContext';
+import { useEditor } from '../../state/EditorContext/useEditor';
+import "react-quill/dist/quill.snow.css";
 
 export const TextAreaEditor = () => {
 
@@ -27,19 +29,13 @@ export const TextAreaEditor = () => {
                 value={titleColor}
                 onChange={actions.updateTextAreaTitleColor}
             />
-            <InputWithLabel 
-                label="Description"
-                type="text"
-                value={description}
-                onChange={(e) => {
-                    const value = e.target.value;
-                    if (value.length <= 80) {
-                        actions.updateTextAreaDescription(e.target.value);
-                    }
-                }}
-                placeholder="Enter Description"
+            <label className="block font-medium mb-2">Description</label>
+            <ReactQuill 
+                theme="snow" 
+                value={description} 
+                onChange={(value) => actions.updateTextAreaDescription(value)} 
+                placeholder="Enter description here..."
             />
-            <p className="text-sm text-gray-500 mb-4">{description.length}/80</p>
             <ColorPicker
                 label="Description Color"
                 value={descriptionColor}

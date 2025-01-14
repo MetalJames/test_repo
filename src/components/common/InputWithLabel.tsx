@@ -1,6 +1,6 @@
 import React from 'react';
 
-type InputWithLabelProps = {
+type Props = {
     label: string;
     type: "text" | "color";
     value: string;
@@ -9,7 +9,7 @@ type InputWithLabelProps = {
     placeholder?: string;
 }
 
-export const InputWithLabel = (props: InputWithLabelProps) => {
+export const InputWithLabel = (props: Props) => {
 
     const { label, type, value, onChange, className, placeholder } = props;
 

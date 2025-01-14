@@ -1,10 +1,13 @@
-type SaveConfigModalProps = {
+type Props = {
     isOpen: boolean;
     state: object;
     onClose: () => void;
 };
 
-export const SaveConfigModal = ({ isOpen, state, onClose }: SaveConfigModalProps) => {
+export const SaveConfigModal = (props: Props) => {
+
+    const { isOpen, state, onClose } = props;
+
     if (!isOpen) return null;
 
     return (
