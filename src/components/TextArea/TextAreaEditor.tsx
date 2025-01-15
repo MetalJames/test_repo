@@ -17,9 +17,10 @@ export const TextAreaEditor = () => {
                 value={title}
                 onChange={(e) => {
                     const value = e.target.value;
-                    if (value.length <= 30) {
-                        actions.updateTextAreaTitle(e.target.value);
-                    }
+                    actions.updateTextAreaTitle(value.slice(0, 30));
+                    // if (value.length <= 30) {
+                    //     actions.updateTextAreaTitle(e.target.value);
+                    // }
                 }}
                 placeholder="Enter Title"
             />
