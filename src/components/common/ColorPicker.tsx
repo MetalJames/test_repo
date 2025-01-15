@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FeedbackModal } from './FeedBackModal';
 
 type Props = {
     label: string;
@@ -11,6 +12,9 @@ export const ColorPicker = (props: Props) => {
     const { label, value, onChange } = props;
     
     const [color, setColor] = useState(value);
+    const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+    const [feedbackMessage, setFeedbackMessage] = useState("");
+    const [feedbackButtonLabel, setFeedbackButtonLabel] = useState("OK");
 
     // Sync local state with external value
     useEffect(() => {
@@ -27,7 +31,10 @@ export const ColorPicker = (props: Props) => {
 
     // Handle manual input for hex color
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const input = e.target.value;
+        let input = e.target.value.trim();
+        if (input.length > 7) {
+            input = input.slice(0, 7);
+        }
         setColor(input);
     };
 
@@ -45,7 +52,9 @@ export const ColorPicker = (props: Props) => {
         if (/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/.test(normalizedColor)) {
             onChange(normalizedColor);
         } else {
-            alert("Invalid HEX color. Please enter a valid value, e.g., #RRGGBB.");
+            setFeedbackMessage("Invalid HEX color. Please enter a valid value, e.g., #RRGGBB.");
+            setFeedbackButtonLabel("Try Again");
+            setIsFeedbackModalOpen(true);
         }
     };
 
@@ -63,12 +72,12 @@ export const ColorPicker = (props: Props) => {
                 />
 
                 {/* Native Color Picker */}
-                <div className="flex w-full">
+                <div className="flex w-full items-center gap-4">
                     <input
                         type="color"
                         value={/^#([A-Fa-f0-9]{6})$/.test(color) ? color : value}
                         onChange={handleColorPickerChange}
-                        className="w-full xl:w-1/3 h-10 p-0 pr-4 border rounded-md"
+                        className="w-full xl:w-1/3 h-10 rounded-md focus:outline-none"
                     />
                     <button
                         onClick={handleConfirm}
@@ -77,6 +86,12 @@ export const ColorPicker = (props: Props) => {
                         OK
                     </button>
                 </div>
+                <FeedbackModal
+                    isOpen={isFeedbackModalOpen}
+                    message={feedbackMessage}
+                    buttonLabel={feedbackButtonLabel}
+                    onClose={() => setIsFeedbackModalOpen(false)}
+                />
             </div>
         </div>
     );

@@ -6,8 +6,8 @@ export const CallToActionPreview = () => {
     const { label, link, backgroundColor, textColor } = state.button;
 
     return (
-        <div className="p-4 border rounded-md shadow-md">
-            <div className="preview mt-6 text-center">
+        <div className="p-2 border rounded-md shadow-md">
+            <div className="preview mt-2 text-center">
                 <a 
                     href={link}
                     target='_blank'

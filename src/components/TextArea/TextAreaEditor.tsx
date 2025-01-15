@@ -9,7 +9,7 @@ export const TextAreaEditor = () => {
     const { title, titleColor, description, descriptionColor } = state.textArea;
 
     return (
-        <div className="w-full bg-gray-100 p-4 rounded-lg shadow-md mb-2">
+        <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-4">
             <h2 className="text-lg font-semibold mb-4">Text Area Editor</h2>
             <InputWithLabel 
                 label="Title"
@@ -33,6 +33,7 @@ export const TextAreaEditor = () => {
                 value={description} 
                 onChange={(value) => actions.updateTextAreaDescription(value)} 
                 placeholder="Enter description here..."
+                className="mb-2"
             />
             <ColorPicker
                 label="Description Color"

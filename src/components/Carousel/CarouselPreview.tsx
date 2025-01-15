@@ -8,7 +8,7 @@ import { NextArrow, PrevArrow } from "./PrevNextArrow";
 export const CarouselPreview = () => {
 
     const { state } = useEditor();
-    const { images, viewMode } = state.carousel;
+    const { images, viewMode, cornerRadius, imageFitMode } = state.carousel;
 
     const settings = {
         slidesToShow: 1,
@@ -51,6 +51,10 @@ export const CarouselPreview = () => {
                                 src={image.url} 
                                 alt={`Slide ${id}`} 
                                 className="w-full object-cover"
+                                style={{
+                                    borderRadius: `${cornerRadius}px`,
+                                    objectFit: imageFitMode,
+                                }}
                             />
                         </div>
                     ))}

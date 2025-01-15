@@ -14,6 +14,16 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
             ...state,
             carousel: { ...state.carousel, viewMode: action.payload },
         };
+        case "UPDATE_CAROUSEL_CORNER_RADIUS":
+            return {
+                ...state,
+                carousel: { ...state.carousel, cornerRadius: action.payload },
+            };
+        case "UPDATE_CAROUSEL_IMAGE_FIT_MODE":
+            return {
+                ...state,
+                carousel: { ...state.carousel, imageFitMode: action.payload },
+            };
         case "UPDATE_TEXTAREA_TITLE":
         return {
             ...state,

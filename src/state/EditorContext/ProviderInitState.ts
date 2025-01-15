@@ -3,7 +3,9 @@ import { EditorState } from "./types";
 export const initialEditorState: EditorState = {
     carousel: { 
         images: [], 
-        viewMode: "landscape" 
+        viewMode: "landscape",
+        cornerRadius: 8,
+        imageFitMode: "cover",
     },
     textArea: {
         title: "Sample Title",

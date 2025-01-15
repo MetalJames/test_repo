@@ -7,6 +7,8 @@ export const EditorContext = createContext<EditorContextType>({
     actions: {
         updateCarouselImages: () => null,
         updateCarouselViewMode: () => null,
+        updateCarouselCornerRadius: () => null,
+        updateCarouselImageFitMode: () => null, 
         updateTextAreaTitle: () => null,
         updateTextAreaDescription: () => null,
         updateTextAreaTitleColor: () => null,

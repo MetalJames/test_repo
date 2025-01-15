@@ -3,15 +3,16 @@ import { useEditor } from "../../state/EditorContext/useEditor";
 import { useState } from 'react';
 import { AddEditImageModal } from "../common/AddEditImageModal";
 import { FeedbackModal } from '../common/FeedBackModal';
-import { ConfirmationModal } from '../index';
-import { CarouselImage, ImageViewMode } from "../../types";
+import { ConfirmationModal, InputWithLabel } from '../index';
+import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types";
 import { v4 as uuidv4 } from "uuid";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { SelectWithLabel } from '../common/SelectWithLabel';
 
 export const CarouselEditor = () => {
 
     const { state, actions } = useEditor();
-    const { images, viewMode } = state.carousel;
+    const { images, viewMode, cornerRadius, imageFitMode } = state.carousel;
 
     const [inputValue, setInputValue] = useState("");
     const [isInputModalOpen, setIsInputModalOpen] = useState(false);
@@ -83,7 +84,7 @@ export const CarouselEditor = () => {
     };
 
     return (
-        <div className="w-full bg-gray-100 p-4 rounded-md shadow-lg mb-2">
+        <div className="w-full bg-gray-50 p-4 rounded-md shadow-lg mb-4">
             <h2 className="text-lg font-semibold mb-4">Carousel Editor</h2>
             <div className="flex flex-wrap items-center gap-4 mb-4">
                 <button 
@@ -92,9 +93,8 @@ export const CarouselEditor = () => {
                 >
                     Add Image
                 </button>
-
             </div>
-            <ul className="h-64 overflow-auto bg-gray-50 border rounded-md p-2 space-y-2 my-4">
+            <ul className="h-64 overflow-auto bg-gray-100 border rounded-md p-2 space-y-2 my-4">
                 {images.length === 0 ? (
                     <li className="mb-4 text-gray-500 text-sm">
                         No images added. Click "Add Image" to begin.
@@ -135,16 +135,35 @@ export const CarouselEditor = () => {
                     ))
                 )}
             </ul>
-            <label className="block font-medium text-gray-700 mb-2">Display Options</label>
-            <select
+            <SelectWithLabel
+                label="Display Options"
                 value={viewMode}
-                onChange={(e) => actions.updateCarouselViewMode(e.target.value as ImageViewMode)}
-                className="w-1/2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none mb-4"
-            >
-                <option value="portrait">Portrait</option>
-                <option value="landscape">Landscape</option>
-                <option value="square">Square</option>
-            </select>
+                onChange={(value) => actions.updateCarouselViewMode(value as ImageViewMode)}
+                options={[
+                    { value: 'portrait', label: 'Portrait' },
+                    { value: 'landscape', label: 'Landscape' },
+                    { value: 'square', label: 'Square' },
+                ]}
+            />
+            <InputWithLabel
+                label="Corner Radius"
+                type="range"
+                min={0}
+                max={50}
+                value={cornerRadius}
+                onChange={(value) => actions.updateCarouselCornerRadius(value as number)}
+                additionalText={`Current Radius: ${cornerRadius}px`}
+            />
+            <SelectWithLabel
+                label="Image Fit Mode"
+                value={imageFitMode}
+                onChange={(value) => actions.updateCarouselImageFitMode(value as ImageFitMode)}
+                options={[
+                    { value: 'cover', label: 'Cover' },
+                    { value: 'contain', label: 'Contain' },
+                    { value: 'fill', label: 'Fill' },
+                ]}
+            />
             <AddEditImageModal
                 isOpen={isInputModalOpen}
                 title={selectedImageIndex === null ? "Add New Image" : "Edit Image URL"}

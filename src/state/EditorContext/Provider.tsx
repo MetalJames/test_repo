@@ -3,7 +3,7 @@ import { EditorContext } from "./Context";
 import { editorReducer } from "./Reducer";
 import { initialEditorState } from "./ProviderInitState";
 import { EditorActions } from "./types";
-import { CarouselImage } from "../../types/globalTypes";
+import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types/globalTypes";
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(editorReducer, initialEditorState);
@@ -13,11 +13,19 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     const updateCarouselViewMode = useCallback(
-        (viewMode: "portrait" | "landscape" | "square") => {
+        (viewMode: ImageViewMode) => {
         dispatch({ type: "UPDATE_CAROUSEL_VIEW_MODE", payload: viewMode });
         },
         []
     );
+
+    const updateCarouselCornerRadius = useCallback((radius: number) => {
+        dispatch({ type: "UPDATE_CAROUSEL_CORNER_RADIUS", payload: radius });
+    }, []);
+
+    const updateCarouselImageFitMode = useCallback((fitMode: ImageFitMode) => {
+        dispatch({ type: "UPDATE_CAROUSEL_IMAGE_FIT_MODE", payload: fitMode });
+    }, []);
 
     const updateTextAreaTitle = useCallback((title: string) => {
         dispatch({ type: "UPDATE_TEXTAREA_TITLE", payload: title });
@@ -58,6 +66,8 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const actions: EditorActions = {
         updateCarouselImages,
         updateCarouselViewMode,
+        updateCarouselCornerRadius,
+        updateCarouselImageFitMode,
         updateTextAreaTitle,
         updateTextAreaDescription,
         updateTextAreaTitleColor,
@@ -71,7 +81,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <EditorContext.Provider value={{ state, actions }}>
-        {children}
+            {children}
         </EditorContext.Provider>
     );
 };

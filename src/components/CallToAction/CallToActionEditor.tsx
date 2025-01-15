@@ -7,7 +7,7 @@ export const CallToActionEditor = () => {
     const { label, link, backgroundColor, textColor } = state.button
 
     return (
-        <div className="w-full bg-gray-100 p-4 rounded-lg shadow-md mb-2">
+        <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-2">
             <h2 className="text-lg font-semibold mb-4">Call to Action Editor</h2>
             <InputWithLabel 
                 label="Button Label"
