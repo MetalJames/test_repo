@@ -75,3 +75,19 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         </EditorContext.Provider>
     );
 };
+
+
+// What the Feedback Suggests:
+
+// Split Contexts: You can create separate contexts for carousel, textArea, and button to localize updates. For example:
+// tsx
+// Copy code
+// <CarouselProvider>
+//   <TextAreaProvider>
+//     <ButtonProvider>
+//       <App />
+//     </ButtonProvider>
+//   </TextAreaProvider>
+// </CarouselProvider>
+// This ensures only the specific context re-renders when a related part of the state changes.
+// Memoize Updates: Use React.memo or useMemo to optimize state selectors and avoid unnecessary renders.

@@ -9,7 +9,7 @@ export const TextAreaEditor = () => {
     const { title, titleColor, description, descriptionColor } = state.textArea;
 
     return (
-        <div className="w-full bg-gray-100 p-4 rounded-md shadow-md">
+        <div className="w-full bg-gray-100 p-4 rounded-lg shadow-md mb-2">
             <h2 className="text-lg font-semibold mb-4">Text Area Editor</h2>
             <InputWithLabel 
                 label="Title"
@@ -18,9 +18,6 @@ export const TextAreaEditor = () => {
                 onChange={(e) => {
                     const value = e.target.value;
                     actions.updateTextAreaTitle(value.slice(0, 30));
-                    // if (value.length <= 30) {
-                    //     actions.updateTextAreaTitle(e.target.value);
-                    // }
                 }}
                 placeholder="Enter Title"
             />
