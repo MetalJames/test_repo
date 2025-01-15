@@ -6,7 +6,7 @@ export const TextAreaPreview = () => {
     const { title, titleColor, description, descriptionColor } = state.textArea;
 
     return (
-        <div className="w-full bg-gray-100 p-6 h-52 flex flex-col justify-center">
+        <div className="w-full bg-gray-100 p-6 flex flex-col">
             <h2
                 style={{ color: titleColor }}
                 className="text-2xl font-bold mb-2 break-words"
@@ -19,15 +19,9 @@ export const TextAreaPreview = () => {
             </p>
             <div
                 style={{ color: descriptionColor }}
-                className="text-base text-gray-700 h-64 break-words overflow-hidden"
+                className="text-base text-gray-700 min-h-40 break-words overflow-visible"
                 dangerouslySetInnerHTML={{ __html: description || "Here we will display customer's description." }}
             />
-            {/* <p
-                style={{ color: descriptionColor }}
-                className="text-base text-gray-700 h-24 break-words overflow-hidden"
-            >
-                {description || "Here we will display customer's description."}
-            </p> */}
         </div>
     )
 };

@@ -2,7 +2,8 @@ import { useReducer, useCallback, ReactNode } from "react";
 import { EditorContext } from "./Context";
 import { editorReducer } from "./Reducer";
 import { initialEditorState } from "./ProviderInitState";
-import { CarouselImage, EditorActions } from "./types";
+import { EditorActions } from "./types";
+import { CarouselImage } from "../../types/globalTypes";
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(editorReducer, initialEditorState);

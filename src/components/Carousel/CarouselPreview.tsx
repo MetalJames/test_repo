@@ -40,9 +40,9 @@ export const CarouselPreview = () => {
                 <div className="flex items-center justify-center w-full h-[300px] bg-gray-200 rounded-md">
                     <p className="text-gray-500 text-center">Your Image Here</p>
                 </div>
-            ) : (
+                ) : (
                 <SliderSlick
-                    key={images.join(",")}
+                    key={`${viewMode}-${images.length}`}
                     {...settings}
                 >
                     {images.map((image, id) => (
@@ -50,7 +50,7 @@ export const CarouselPreview = () => {
                             <img 
                                 src={image.url} 
                                 alt={`Slide ${id}`} 
-                                className="w-full h-[300px] object-cover"
+                                className="w-full object-cover"
                             />
                         </div>
                     ))}
