@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FeedbackModal } from './FeedbackModal';
+import { FeedBackModal } from '.';
 // not sure what is wrong here
 
 type Props = {
@@ -79,7 +79,7 @@ export const ColorPicker = (props: Props) => {
                         className="w-full xl:w-1/3 h-10 rounded-md focus:outline-none"
                     />
                 </div>
-                <FeedbackModal
+                <FeedBackModal
                     isOpen={isFeedbackModalOpen}
                     message={feedbackMessage}
                     buttonLabel={feedbackButtonLabel}

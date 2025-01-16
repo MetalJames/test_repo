@@ -5,7 +5,7 @@ type Props = {
     onClose: () => void;
 };
 
-export const FeedbackModal = (props: Props) => {
+export const FeedBackModal = (props: Props) => {
 
     const { isOpen, message, buttonLabel, onClose } = props;
 

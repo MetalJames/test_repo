@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useEditor } from '../../state/EditorContext/useEditor';
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { v4 as uuidv4 } from "uuid";
-import { AddEditImageModal, FeedbackModal, ConfirmationModal, InputWithLabel, SelectWithLabel } from "../common";
+import { AddEditImageModal, FeedBackModal, ConfirmationModal, InputWithLabel, SelectWithLabel } from "../common";
 import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types";
 import './index.css';
 
@@ -171,7 +171,7 @@ export const CarouselEditor = () => {
                 onConfirm={handleInputConfirm}
                 onCancel={closeInputModal}
             />
-            <FeedbackModal
+            <FeedBackModal
                 isOpen={isFeedbackModalOpen}
                 message={feedbackMessage}
                 buttonLabel={feedbackButtonLabel}
