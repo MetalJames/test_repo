@@ -15,10 +15,24 @@ export const AddEditImageModal = (props: Props) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div 
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-edit-image-modal-title"
+        >
             <div className="bg-white p-6 rounded-md shadow-md w-[400px]">
-                <h2 className="text-lg font-bold mb-4 text-center">{title}</h2>
+                <h2 
+                    id="add-edit-image-modal-title"
+                    className="text-lg font-bold mb-4 text-center"
+                >
+                    {title}
+                </h2>
+                <label className="sr-only" htmlFor="image-url-input">
+                    Image URL
+                </label>
                 <input
+                    id="image-url-input"
                     type="text"
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
