@@ -1,4 +1,3 @@
-// import { useTextArea } from '../../state/EditorContext/TextArea/useTextArea';
 import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const TextAreaPreview = () => {

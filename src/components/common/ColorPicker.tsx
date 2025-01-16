@@ -21,7 +21,6 @@ export const ColorPicker = (props: Props) => {
         setColor(value);
     }, [value]);
 
-    // Normalize short hex (#RGB) to full hex (#RRGGBB)
     const normalizeHex = (hex: string) => {
         if (/^#([A-Fa-f0-9]{3})$/.test(hex)) {
             return `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
@@ -29,7 +28,6 @@ export const ColorPicker = (props: Props) => {
         return hex;
     };
 
-    // Handle manual input for hex color
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let input = e.target.value.trim();
         if (input.length > 7) {
@@ -38,17 +36,14 @@ export const ColorPicker = (props: Props) => {
         setColor(input);
     };
 
-    // Handle native color picker change
     const handleColorPickerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newColor = e.target.value;
         setColor(newColor);
         onChange(newColor);
     };
 
-    // Confirm the color change and update the parent state
     const handleConfirm = () => {
         const normalizedColor = normalizeHex(color);
-        // Validate the hex format
         if (/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/.test(normalizedColor)) {
             onChange(normalizedColor);
         } else {
@@ -62,7 +57,6 @@ export const ColorPicker = (props: Props) => {
         <div className="mb-4">
             <label className="block font-medium mb-2">{label}</label>
             <div className="flex flex-col xl:flex-row xl:items-center xl:space-x-4 gap-4">
-                {/* Hex Color Input */}
                 <input
                     type="text"
                     value={color}
@@ -70,8 +64,6 @@ export const ColorPicker = (props: Props) => {
                     placeholder="#RRGGBB"
                     className="p-2 border border-gray-300 rounded-md w-full xl:w-2/3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-
-                {/* Native Color Picker */}
                 <div className="flex w-full items-center gap-4">
                     <input
                         type="color"

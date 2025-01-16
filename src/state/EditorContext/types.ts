@@ -13,7 +13,7 @@ export type EditorState = {
     titleColor: string;
     descriptionColor: string;
   };
-  button: {
+  callToAction: {
     label: string;
     link: string;
     backgroundColor: string;

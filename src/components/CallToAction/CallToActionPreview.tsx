@@ -1,10 +1,9 @@
-// import { useCTA } from '../../state/EditorContext/CallToAction/useCTA';
 import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const CallToActionPreview = () => {
 
     const { state } = useEditor();
-    const { label, link, backgroundColor, textColor } = state.button;
+    const { label, link, backgroundColor, textColor } = state.callToAction;
 
     return (
         <div className="p-2 border rounded-md shadow-md">

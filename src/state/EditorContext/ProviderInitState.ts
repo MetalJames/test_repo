@@ -13,7 +13,7 @@ export const initialEditorState: EditorState = {
         titleColor: "#000000",
         descriptionColor: "#000000",
     },
-    button: {
+    callToAction: {
         label: "Click Me",
         link: "https://example.com",
         backgroundColor: "#000000",

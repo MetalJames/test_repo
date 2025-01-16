@@ -6,8 +6,4 @@ export { TextAreaEditor } from './TextArea/TextAreaEditor';
 export { TextAreaPreview } from './TextArea/TextAreaPreview';
 export { MobilePreview } from './EditorPreview/MobilePreview';
 export { MobileEditor } from './EditorPreview/MobileEditor';
-export { ColorPicker } from './common/ColorPicker';
-export { InputWithLabel } from './common/InputWithLabel';
-export { ConfirmationModal } from './common/ConfirmationModal';
-export { SaveConfigModal } from './common/SaveConfigModal';
 export { ErrorBoundary } from './ErrorBoundary/ErrorBoundry';

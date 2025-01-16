@@ -1,14 +1,12 @@
-import { ColorPicker, InputWithLabel } from '../index';
-// import { useCTA } from '../../state/EditorContext/CallToAction/useCTA';
-import { useEditor } from '../../state/EditorContext/useEditor';
 import { useMemo } from 'react';
+import { useEditor } from '../../state/EditorContext/useEditor';
+import { ColorPicker, InputWithLabel } from '../common';
 
 export const CallToActionEditor = () => {
 
     const { state, actions } = useEditor();
-    const callToActionState = useMemo(() => state.button, [state.button]);
+    const callToActionState = useMemo(() => state.callToAction, [state.callToAction]);
     const { label, link, backgroundColor, textColor } = callToActionState;
-    console.log(label)
 
     return (
         <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-2">

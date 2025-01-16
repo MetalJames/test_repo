@@ -1,19 +1,16 @@
-import './index.css';
-// import { useCarousel } from "../../state/EditorContext/Carousel/useCarousel";
-import { useState } from 'react';
-import { AddEditImageModal } from "../common/AddEditImageModal";
-import { FeedbackModal } from '../common/FeedBackModal';
-import { ConfirmationModal, InputWithLabel } from '../index';
-import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types";
-import { v4 as uuidv4 } from "uuid";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { SelectWithLabel } from '../common/SelectWithLabel';
+import { useMemo, useState } from 'react';
 import { useEditor } from '../../state/EditorContext/useEditor';
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { v4 as uuidv4 } from "uuid";
+import { AddEditImageModal, FeedbackModal, ConfirmationModal, InputWithLabel, SelectWithLabel } from "../common";
+import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types";
+import './index.css';
 
 export const CarouselEditor = () => {
 
     const { state, actions } = useEditor();
-    const { images, viewMode, cornerRadius, imageFitMode } = state.carousel;
+    const callCarouselState = useMemo(() => state.carousel, [state.carousel]);
+    const { images, viewMode, cornerRadius, imageFitMode } = callCarouselState;
 
     const [inputValue, setInputValue] = useState("");
     const [isInputModalOpen, setIsInputModalOpen] = useState(false);

@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { CarouselEditor, TextAreaEditor, CallToActionEditor } from "../index";
 import { useEditor } from "../../state/EditorContext/useEditor";
-import { ConfirmationModal, SaveConfigModal } from "../index";
-// import { useGlobalContext } from "../../state/EditorContext/GlobalProvider/useGlobal";
+import { CarouselEditor, TextAreaEditor, CallToActionEditor } from "../index";
+import { ConfirmationModal, SaveConfigModal } from "../common";
 
 export const MobileEditor = () => {
-    // const { resetAll, getCombinedState } = useGlobalContext();
     const { state, actions } = useEditor();
     const [isResetModalOpen, setIsResetModalOpen] = useState(false);
     const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
@@ -27,11 +25,7 @@ export const MobileEditor = () => {
     };
 
     const handleCloseSaveModal = () => setIsSaveModalOpen(false);
-
-    // const combinedState = getCombinedState();
-
-    // console.log(combinedState)
-
+    
     return (
         <div className="w-full lg:w-1/3 xl:w-1/4 bg-gray-100 p-4 sm:p-6 lg:p-8 overflow-y-auto">
             <h1 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">Editor Panel</h1>

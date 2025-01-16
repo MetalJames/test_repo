@@ -1,10 +1,9 @@
+import { useEditor } from "../../state/EditorContext/useEditor";
+import { NextArrow, PrevArrow } from "./PrevNextArrow";
 import SliderSlick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./index.css";
-// import { useCarousel } from "../../state/EditorContext/Carousel/useCarousel";
-import { NextArrow, PrevArrow } from "./PrevNextArrow";
-import { useEditor } from "../../state/EditorContext/useEditor";
 
 export const CarouselPreview = () => {
 

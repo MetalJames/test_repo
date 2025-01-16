@@ -47,22 +47,22 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
         case "UPDATE_BUTTON_LABEL":
         return {
             ...state,
-            button: { ...state.button, label: action.payload },
+            callToAction: { ...state.callToAction, label: action.payload },
         };
         case "UPDATE_BUTTON_LINK":
         return {
             ...state,
-            button: { ...state.button, link: action.payload },
+            callToAction: { ...state.callToAction, link: action.payload },
         };
         case "UPDATE_BUTTON_BACKGROUND_COLOR":
         return {
             ...state,
-            button: { ...state.button, backgroundColor: action.payload },
+            callToAction: { ...state.callToAction, backgroundColor: action.payload },
         };
         case "UPDATE_BUTTON_TEXT_COLOR":
         return {
             ...state,
-            button: { ...state.button, textColor: action.payload },
+            callToAction: { ...state.callToAction, textColor: action.payload },
         };
         case "RESET_STATE":
             return initialEditorState;
