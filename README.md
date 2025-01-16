@@ -79,6 +79,114 @@ Or you can include screenshots/GIFs to showcase the editor and preview in action
    ```bash
    git clone https://github.com/your-username/your-repo.git
    cd your-repo
+   npm install | npm i
+   npm run dev
+
+    This should open the editor at http://localhost:5173 or a similar port.
+
+    Usage
+        Editor Panel:
+        The left (or top on smaller screens) side of the page allows you to configure:
+            Carousel (images, view mode, corner radius, image fit mode)
+            Text area (title, description, colors)
+            CTA (label, link, colors)
+            Buttons to reset all fields or save the config
+        Preview Screen:
+        The right (or bottom on smaller screens) side shows a mobile-like interface reflecting your changes in real time.
 
 
-Display option, Corner Radius, and image fit mode should be disabled until image is loaded.
+      Scripts
+      In your package.json, you’ll find these scripts:
+
+      npm run dev: Runs the Vite dev server for local development.
+
+      npm run build:
+
+      Compiles TypeScript (tsc -b).
+      Builds the production bundle with Vite (vite build).
+      npm run preview: Serves the production build locally so you can test before deployment.
+
+
+      Project Structure
+
+          ├─ src
+          │  ├─ App.tsx
+          │  ├─ main.tsx
+          │  ├─ index.css
+          │  ├─ components
+          │  │  ├─ CallToAction
+          │  │  ├─ Carousel
+          │  │  ├─ EditorPreview
+          │  │  ├─ ErrorBoundary
+          │  │  └─ TextArea
+          │  │  └─ common
+          │  ├─ state
+          │  │  └─ EditorContext
+          │  ├─ types
+          │  └─ ...
+          ├─ package.json
+          ├─ tsconfig.json
+          ├─ tailwind.config.js
+          ├─ vite.config.ts
+          └─ README.md
+
+    Notable Folders:
+
+        components/common/: Shared UI components (modals, input fields, color pickers, etc.).
+        components/CarouselEditor.tsx & CarouselPreview.tsx: Handles carousel functionality.
+        components/CallToActionEditor.tsx & CallToActionPreview.tsx: Manages CTA button.
+        components/TextAreaEditor.tsx & TextAreaPreview.tsx: Title, description, and color fields.
+        EditorPreview/MobileEditor.tsx: Organizes the main editor panel.
+        EditorPreview/MobilePreview.tsx: Main phone-like preview container.
+        state/EditorContext/: Contains context, reducer, initial state, and custom hooks.
+        types/: Global or shared TypeScript type definitions.
+
+
+    Technologies Used
+        React (v18+)
+        TypeScript (~v5.6.2)
+        Vite (v6.0.5) for bundling and dev server
+        Tailwind CSS (v3.4.17) for styling
+        React Slick & Slick Carousel for the carousel
+        React Quill for the rich-text editor
+        React Context + useReducer for state management
+
+
+    Future Improvements
+    Below are some ideas you can consider:
+
+        Implement Undo/Redo
+            Store a history of states in the reducer so users can revert or reapply changes.
+        
+        Enhance Accessibility
+            Add role="dialog" and aria-modal="true" to modals, use labels with htmlFor, and ensure color contrast meets WCAG guidelines.
+
+        Comprehensive Testing
+            Write tests (Jest + React Testing Library) to verify components like CarouselEditor or TextAreaEditor behave correctly.
+
+        Additional Animations & Polish
+            Add subtle transitions on modals, hover effects, and smoother carousel transitions for a more refined UX.
+
+        Advanced Validation & Sanitization
+            Provide more robust validation for URLs (carousel images, CTA link) and sanitize HTML from the text editor in real-world scenarios to prevent XSS.
+
+        Prevention of choosing styles until image loaded
+            Display option, Corner Radius, and image fit mode should be disabled until image is loaded.
+
+
+Thank You
+Thanks for checking out the Mobile App Home Screen Editor! If you have any questions or suggestions, feel free to open an issue or reach out. Enjoy customizing and previewing your mobile app design!
+
+
+
+
+
+---
+
+### Tips on Usage
+
+- Customize any sections (e.g., change the version numbers or links if they differ in your code).  
+- Replace the repository link in the **Installation** step with your actual GitHub URL.  
+- If you have screenshots or GIFs, consider adding them under **Demo** using Markdown image syntax.  
+
+This **README** should set you up nicely for sharing your project with others. Good luck, and happy coding!
