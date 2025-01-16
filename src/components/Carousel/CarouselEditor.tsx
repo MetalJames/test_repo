@@ -1,5 +1,5 @@
 import './index.css';
-import { useCarousel } from "../../state/EditorContext/Carousel/useCarousel";
+// import { useCarousel } from "../../state/EditorContext/Carousel/useCarousel";
 import { useState } from 'react';
 import { AddEditImageModal } from "../common/AddEditImageModal";
 import { FeedbackModal } from '../common/FeedBackModal';
@@ -8,10 +8,11 @@ import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types";
 import { v4 as uuidv4 } from "uuid";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { SelectWithLabel } from '../common/SelectWithLabel';
+import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const CarouselEditor = () => {
 
-    const { state, actions } = useCarousel();
+    const { state, actions } = useEditor();
     const { images, viewMode, cornerRadius, imageFitMode } = state.carousel;
 
     const [inputValue, setInputValue] = useState("");

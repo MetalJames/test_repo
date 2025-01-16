@@ -1,8 +1,9 @@
-import { useCTA } from '../../state/EditorContext/CallToAction/useCTA';
+// import { useCTA } from '../../state/EditorContext/CallToAction/useCTA';
+import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const CallToActionPreview = () => {
 
-    const { state } = useCTA();
+    const { state } = useEditor();
     const { label, link, backgroundColor, textColor } = state.button;
 
     return (

@@ -1,9 +1,9 @@
-import { useReducer, useCallback, ReactNode } from "react";
+import { useReducer, useCallback, ReactNode, useMemo } from "react";
 import { EditorContext } from "./Context";
 import { editorReducer } from "./Reducer";
 import { initialEditorState } from "./ProviderInitState";
 import { EditorActions } from "./types";
-import { CarouselImage, ImageFitMode, ImageViewMode } from "../../../types/globalTypes";
+import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types/globalTypes";
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(editorReducer, initialEditorState);
@@ -63,7 +63,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         dispatch({ type: "RESET_STATE" });
     }, []);
 
-    const actions: EditorActions = {
+    const actions: EditorActions = useMemo (() => ({
         updateCarouselImages,
         updateCarouselViewMode,
         updateCarouselCornerRadius,
@@ -77,27 +77,27 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         updateButtonBackgroundColor,
         updateButtonTextColor,
         resetState,
-    };
+    }), [
+        updateCarouselImages,
+        updateCarouselViewMode,
+        updateCarouselCornerRadius,
+        updateCarouselImageFitMode,
+        updateTextAreaTitle,
+        updateTextAreaDescription,
+        updateTextAreaTitleColor,
+        updateTextAreaDescriptionColor,
+        updateButtonLabel,
+        updateButtonLink,
+        updateButtonBackgroundColor,
+        updateButtonTextColor,
+        resetState,
+    ]);
+
+    const contexValue = useMemo(() => ({ state, actions }), [ state, actions ]);
 
     return (
-        <EditorContext.Provider value={{ state, actions }}>
+        <EditorContext.Provider value={contexValue}>
             {children}
         </EditorContext.Provider>
     );
 };
-
-
-// What the Feedback Suggests:
-
-// Split Contexts: You can create separate contexts for carousel, textArea, and button to localize updates. For example:
-// tsx
-// Copy code
-// <CarouselProvider>
-//   <TextAreaProvider>
-//     <ButtonProvider>
-//       <App />
-//     </ButtonProvider>
-//   </TextAreaProvider>
-// </CarouselProvider>
-// This ensures only the specific context re-renders when a related part of the state changes.
-// Memoize Updates: Use React.memo or useMemo to optimize state selectors and avoid unnecessary renders.

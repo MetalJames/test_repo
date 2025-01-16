@@ -1,12 +1,14 @@
 import ReactQuill from 'react-quill';
 import { InputWithLabel, ColorPicker } from '../index';
-import { useTextArea } from '../../state/EditorContext/TextArea/useTextArea';
+// import { useTextArea } from '../../state/EditorContext/TextArea/useTextArea';
 import "react-quill/dist/quill.snow.css";
+import { useEditor } from '../../state/EditorContext/useEditor';
 
 export const TextAreaEditor = () => {
 
-    const { state, actions } = useTextArea();
+    const { state, actions } = useEditor();
     const { title, titleColor, description, descriptionColor } = state.textArea;
+    console.log(title)
 
     return (
         <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-4">
