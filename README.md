@@ -4,16 +4,16 @@ A **React + TypeScript** application that allows users to preview and modify an 
 
 ---
 
-## **Table of Contents**
-1. [Features](#features)
-2. [Why Vite?](#why-vite)
-3. [Why Tailwind CSS?](#why-tailwind-css)
-4. [Installation & Setup](#installation--setup)
-5. [Usage](#usage)
-6. [Scripts](#scripts)
-7. [Project Structure](#project-structure)
-8. [Technologies Used](#technologies-used)
-9. [Future Improvements](#future-improvements)
+## Table of Contents
+1. [Features](#1-features)
+2. [Why Vite?](#2-why-vite)
+3. [Why Tailwind CSS?](#3-why-tailwind-css)
+4. [Installation & Setup](#4-installation--setup)
+5. [Usage](#5-usage)
+6. [Scripts](#6-scripts)
+7. [Project Structure](#7-project-structure)
+8. [Technologies Used](#8-technologies-used)
+9. [Future Improvements](#9-future-improvements)
 
 ---
 
@@ -65,8 +65,7 @@ A **React + TypeScript** application that allows users to preview and modify an 
 
 ## **4. Installation & Setup**
 
-- not sure what should be here nothing or 4.1. **Clone the repository**:
-   ```bash
+**Clone the repository**:
    git clone https://github.com/your-username/your-repo.git
    cd your-repo
    npm install
