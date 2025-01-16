@@ -66,10 +66,12 @@ A **React + TypeScript** application that allows users to preview and modify an 
 ## **4. Installation & Setup**
 
 **Clone the repository**:
+```bash
    git clone https://github.com/your-username/your-repo.git
    cd your-repo
    npm install
    npm run dev
+```
 
 This should open the editor at `http://localhost:5173` or a similar port.
 
@@ -130,7 +132,7 @@ This should open the editor at `http://localhost:5173` or a similar port.
 ├─ tailwind.config.js
 ├─ vite.config.ts
 └─ README.md
-
+```
 
 ### **Notable Folders**
 
