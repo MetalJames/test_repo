@@ -108,7 +108,7 @@ This should open the editor at `http://localhost:5173` or a similar port.
 ---
 
 ## **7. Project Structure**
-
+```bash
 ├─ src
 │  ├─ App.tsx
 │  ├─ main.tsx
