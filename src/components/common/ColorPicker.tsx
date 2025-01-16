@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FeedBackModal } from '.';
-// not sure what is wrong here
 
 type Props = {
     label: string;
@@ -57,7 +56,7 @@ export const ColorPicker = (props: Props) => {
     return (
         <div className="mb-4">
             <label className="block font-medium mb-2">{label}</label>
-            <div className="flex flex-col xl:flex-row xl:items-center xl:space-x-4">
+            <div className="flex flex-col xl:flex-row xl:items-center xl:space-x-4 gap-4 xl:gap-0">
                 <input
                     type="text"
                     value={color}
