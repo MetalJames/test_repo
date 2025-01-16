@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FeedbackModal } from './FeedBackModal';
+import { FeedbackModal } from './FeedbackModal';
 
 type Props = {
     label: string;
@@ -56,7 +56,7 @@ export const ColorPicker = (props: Props) => {
     return (
         <div className="mb-4">
             <label className="block font-medium mb-2">{label}</label>
-            <div className="flex flex-col xl:flex-row xl:items-center xl:space-x-4 gap-4">
+            <div className="flex flex-col xl:flex-row xl:items-center xl:space-x-4">
                 <input
                     type="text"
                     value={color}
@@ -65,18 +65,18 @@ export const ColorPicker = (props: Props) => {
                     className="p-2 border border-gray-300 rounded-md w-full xl:w-2/3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <div className="flex w-full items-center gap-4">
-                    <input
-                        type="color"
-                        value={/^#([A-Fa-f0-9]{6})$/.test(color) ? color : value}
-                        onChange={handleColorPickerChange}
-                        className="w-full xl:w-1/3 h-10 rounded-md focus:outline-none"
-                    />
                     <button
                         onClick={handleConfirm}
                         className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition w-full xl:w-auto"
                     >
                         OK
                     </button>
+                    <input
+                        type="color"
+                        value={/^#([A-Fa-f0-9]{6})$/.test(color) ? color : value}
+                        onChange={handleColorPickerChange}
+                        className="w-full xl:w-1/3 h-10 rounded-md focus:outline-none"
+                    />
                 </div>
                 <FeedbackModal
                     isOpen={isFeedbackModalOpen}
