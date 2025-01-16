@@ -2,12 +2,12 @@ import SliderSlick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./index.css";
-import { useEditor } from "../../state/EditorContext/useEditor";
+import { useCarousel } from "../../state/EditorContext/Carousel/useCarousel";
 import { NextArrow, PrevArrow } from "./PrevNextArrow";
 
 export const CarouselPreview = () => {
 
-    const { state } = useEditor();
+    const { state } = useCarousel();
     const { images, viewMode, cornerRadius, imageFitMode } = state.carousel;
 
     const settings = {

@@ -1,8 +1,8 @@
-import { useEditor } from '../../state/EditorContext/useEditor';
+import { useTextArea } from '../../state/EditorContext/TextArea/useTextArea';
 
 export const TextAreaPreview = () => {
 
-    const { state } = useEditor();
+    const { state } = useTextArea();
     const { title, titleColor, description, descriptionColor } = state.textArea;
 
     return (

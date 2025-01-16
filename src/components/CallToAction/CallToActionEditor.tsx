@@ -1,9 +1,9 @@
 import { ColorPicker, InputWithLabel } from '../index';
-import { useEditor } from '../../state/EditorContext/useEditor';
+import { useCTA } from '../../state/EditorContext/CallToAction/useCTA';
 
 export const CallToActionEditor = () => {
 
-    const { state, actions } = useEditor();
+    const { state, actions } = useCTA();
     const { label, link, backgroundColor, textColor } = state.button
 
     return (
@@ -13,14 +13,14 @@ export const CallToActionEditor = () => {
                 label="Button Label"
                 type="text"
                 value={label}
-                onChange={(e) => actions.updateButtonLabel(e.target.value)}
+                onChange={(value) => actions.updateButtonLabel(value as string)}
                 placeholder="Enter button text"
             />
             <InputWithLabel 
                 label="Button Link"
                 type="text"
                 value={link}
-                onChange={(e) => actions.updateButtonLink(e.target.value)}
+                onChange={(value) => actions.updateButtonLink(value as string)}
                 placeholder="Enter button link"
             />
             <ColorPicker

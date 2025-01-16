@@ -1,4 +1,4 @@
-import { CarouselImage, ImageViewMode, ImageFitMode  } from "../../types";
+import { CarouselImage, ImageViewMode, ImageFitMode  } from "../../../types";
 
 export type EditorState = {
   carousel: {

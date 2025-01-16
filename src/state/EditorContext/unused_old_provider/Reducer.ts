@@ -1,4 +1,4 @@
-import { CarouselImage } from '../../types/globalTypes';
+import { CarouselImage } from '../../../types/globalTypes';
 import { initialEditorState } from './ProviderInitState';
 import { EditorState, EditorAction } from './types';
 

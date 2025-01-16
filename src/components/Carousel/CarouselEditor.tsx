@@ -1,5 +1,5 @@
 import './index.css';
-import { useEditor } from "../../state/EditorContext/useEditor";
+import { useCarousel } from "../../state/EditorContext/Carousel/useCarousel";
 import { useState } from 'react';
 import { AddEditImageModal } from "../common/AddEditImageModal";
 import { FeedbackModal } from '../common/FeedBackModal';
@@ -11,7 +11,7 @@ import { SelectWithLabel } from '../common/SelectWithLabel';
 
 export const CarouselEditor = () => {
 
-    const { state, actions } = useEditor();
+    const { state, actions } = useCarousel();
     const { images, viewMode, cornerRadius, imageFitMode } = state.carousel;
 
     const [inputValue, setInputValue] = useState("");

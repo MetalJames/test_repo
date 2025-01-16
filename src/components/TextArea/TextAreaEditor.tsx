@@ -1,11 +1,11 @@
 import ReactQuill from 'react-quill';
 import { InputWithLabel, ColorPicker } from '../index';
-import { useEditor } from '../../state/EditorContext/useEditor';
+import { useTextArea } from '../../state/EditorContext/TextArea/useTextArea';
 import "react-quill/dist/quill.snow.css";
 
 export const TextAreaEditor = () => {
 
-    const { state, actions } = useEditor();
+    const { state, actions } = useTextArea();
     const { title, titleColor, description, descriptionColor } = state.textArea;
 
     return (
@@ -15,9 +15,9 @@ export const TextAreaEditor = () => {
                 label="Title"
                 type="text"
                 value={title}
-                onChange={(e) => {
-                    const value = e.target.value;
-                    actions.updateTextAreaTitle(value.slice(0, 30));
+                onChange={(value) => {
+                    const stringValue = value as string;
+                    actions.updateTextAreaTitle(stringValue.slice(0, 30));
                 }}
                 placeholder="Enter Title"
             />

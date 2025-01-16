@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { CarouselEditor, TextAreaEditor, CallToActionEditor } from "../index";
-import { useEditor } from "../../state/EditorContext/useEditor";
+// import { useEditor } from "../../state/EditorContext/useEditor";
 import { ConfirmationModal, SaveConfigModal } from "../index";
+import { useGlobalContext } from "../../state/EditorContext/GlobalProvider/useGlobal";
 
 export const MobileEditor = () => {
-    const { state, actions } = useEditor();
+    const { resetAll, getCombinedState } = useGlobalContext();
     const [isResetModalOpen, setIsResetModalOpen] = useState(false);
     const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +13,7 @@ export const MobileEditor = () => {
     const handleOpenResetModal = () => setIsResetModalOpen(true);
     const handleCloseResetModal = () => setIsResetModalOpen(false);
     const handleConfirmReset = () => {
-        actions.resetState();
+        resetAll();
         handleCloseResetModal();
     };
 
@@ -25,6 +26,8 @@ export const MobileEditor = () => {
     };
 
     const handleCloseSaveModal = () => setIsSaveModalOpen(false);
+
+    const combinedState = getCombinedState();
 
     return (
         <div className="w-full lg:w-1/3 xl:w-1/4 bg-gray-100 p-4 sm:p-6 lg:p-8 overflow-y-auto">
@@ -57,7 +60,7 @@ export const MobileEditor = () => {
                 onConfirm={handleConfirmReset}
                 onCancel={handleCloseResetModal}
             />
-            <SaveConfigModal isOpen={isSaveModalOpen} state={state} onClose={handleCloseSaveModal} />
+            <SaveConfigModal isOpen={isSaveModalOpen} state={combinedState} onClose={handleCloseSaveModal} />
         </div>
     );
 };

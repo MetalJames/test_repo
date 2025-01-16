@@ -3,7 +3,7 @@ import { EditorContext } from "./Context";
 import { editorReducer } from "./Reducer";
 import { initialEditorState } from "./ProviderInitState";
 import { EditorActions } from "./types";
-import { CarouselImage, ImageFitMode, ImageViewMode } from "../../types/globalTypes";
+import { CarouselImage, ImageFitMode, ImageViewMode } from "../../../types/globalTypes";
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(editorReducer, initialEditorState);
