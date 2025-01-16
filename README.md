@@ -19,47 +19,47 @@ A **React + TypeScript** application that allows users to preview and modify an 
 
 ## **1. Features**
 
-1.1. **Carousel Editor**  
+- **Carousel Editor**  
    - Add, edit, and remove image URLs.  
    - Choose display mode: portrait, landscape, or square.  
    - Adjust corner radius and `object-fit` options (`cover`, `contain`, `fill`).
 
-1.2. **Text Area Editor**  
+- **Text Area Editor**  
    - Edit title and description (rich-text with ReactQuill).  
    - Limit the title to 30 characters (demonstrates simple validation).  
    - Choose hex color values for title and description text.
 
-1.3. **Call-to-Action (CTA) Editor**  
+- **Call-to-Action (CTA) Editor**  
    - Configure button label and link.  
    - Select button background color and text color.  
    - Real-time preview of your CTA design.
 
-1.4. **Real-Time Preview**  
+- **Real-Time Preview**  
    - All edits are instantly reflected in a phone-sized “mock” preview.
 
-1.5. **Reset & Save**  
+- **Reset & Save**  
    - Reset all fields to the initial state (with confirmation).  
    - Save configuration as downloadable or copyable JSON.
 
-1.6. **Error Boundary**  
+- **Error Boundary**  
    - Graceful fallback UI to handle unexpected errors without crashing the entire app.
 
 ---
 
 ## **2. Why Vite?**
 
-2.1. **Speed**: Vite is known for its extremely fast dev server and lightning-quick HMR (Hot Module Replacement). This makes the development experience snappy.  
-2.2. **Modern Build Setup**: It uses ES modules in development and bundles via Rollup for production. This yields smaller and faster builds.  
-2.3. **Easy Integration**: Vite has official React and TypeScript plugins, allowing a quick setup for a modern React + TS project without manual configuration.
+- **Speed**: Vite is known for its extremely fast dev server and lightning-quick HMR (Hot Module Replacement). This makes the development experience snappy.  
+- **Modern Build Setup**: It uses ES modules in development and bundles via Rollup for production. This yields smaller and faster builds.  
+- **Easy Integration**: Vite has official React and TypeScript plugins, allowing a quick setup for a modern React + TS project without manual configuration.
 
 ---
 
 ## **3. Why Tailwind CSS?**
 
-3.1. **Utility-First**: Tailwind offers utility classes, making it quick to style components without writing large CSS files.  
-3.2. **Customization**: You can easily customize the default theme, breakpoints, and more.  
-3.3. **Efficiency**: After 3 years of using Tailwind, I’m comfortable with its approach to styling, making development faster and more consistent.  
-3.4. **Integration**: It fits seamlessly into modern JS frameworks, and configuring it with Vite + React is straightforward.
+- **Utility-First**: Tailwind offers utility classes, making it quick to style components without writing large CSS files.  
+- **Customization**: You can easily customize the default theme, breakpoints, and more.  
+- **Efficiency**: After 3 years of using Tailwind, I’m comfortable with its approach to styling, making development faster and more consistent.  
+- **Integration**: It fits seamlessly into modern JS frameworks, and configuring it with Vite + React is straightforward.
 
 ---
 
@@ -68,8 +68,14 @@ A **React + TypeScript** application that allows users to preview and modify an 
 **Clone the repository**:
 ```bash
    git clone https://github.com/your-username/your-repo.git
+```
+```bash
    cd your-repo
+```
+```bash
    npm install
+```
+```bash
    npm run dev
 ```
 
@@ -98,14 +104,14 @@ This should open the editor at `http://localhost:5173` or a similar port.
 ### Available Commands:
 
 - **`npm run dev`**:  
-  Runs the Vite dev server for local development.
+  - Runs the Vite dev server for local development.
 
 - **`npm run build`**:  
   - Compiles TypeScript (`tsc -b`).  
   - Builds the production bundle with Vite (`vite build`).
 
 - **`npm run preview`**:  
-  Serves the production build locally for testing before deployment.
+  - Serves the production build locally for testing before deployment.
 
 ---
 
@@ -164,25 +170,25 @@ This should open the editor at `http://localhost:5173` or a similar port.
 
 ### **Ideas for Enhancements**
 
-1. **Implement Undo/Redo**:
+- **Implement Undo/Redo**:
    - Store a history of states in the reducer for revert and reapply functionality.
 
-2. **Enhance Accessibility**:
+- **Enhance Accessibility**:
    - Add `role="dialog"` and `aria-modal="true"` to modals.
    - Use labels with `htmlFor`.
    - Ensure WCAG-compliant color contrast.
 
-3. **Comprehensive Testing**:
+- **Comprehensive Testing**:
    - Use Jest + React Testing Library to verify component behavior.
 
-4. **Add Animations & Polish**:
+- **Add Animations & Polish**:
    - Subtle transitions, hover effects, and smoother carousel animations.
 
-5. **Advanced Validation & Sanitization**:
+- **Advanced Validation & Sanitization**:
    - Validate URLs (carousel images, CTA link).  
    - Sanitize HTML in the text editor to prevent XSS attacks.
 
-6. **Image-Load-Dependent Controls**:
+- **Image-Load-Dependent Controls**:
    - Disable style options (e.g., corner radius, image fit mode) until the image is loaded.
 
 ---
